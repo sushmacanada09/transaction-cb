@@ -1,0 +1,17 @@
+<form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>ID:</label>
+      <input formControlName="id" readonly>
+    </div>
+    <div>
+      <label>Date:</label>
+      <input formControlName="date" readonly>
+    </div>
+    <div>
+      <label>Comments:</label>
+      <input formControlName="comments">
+    </div>
+    <button type="submit" [disabled]="transactionForm.invalid">Save</button>
+    <button type="button" (click)="moveToTransactionList()">Cancel</button>
+  </form>
+  
