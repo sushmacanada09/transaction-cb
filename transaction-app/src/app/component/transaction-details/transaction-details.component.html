@@ -1,13 +1,13 @@
-<form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+<form *ngIf="transactionForm" [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
     <div>
       <label>ID:</label>
       <input formControlName="id" readonly>
     </div>
-    <div>
+    <div class="date">
       <label>Date:</label>
       <input formControlName="date" readonly>
     </div>
-    <div>
+    <div class="comment">
       <label>Comments:</label>
       <input formControlName="comments">
     </div>

@@ -9,18 +9,19 @@ import { TRANSACTIONS_BY_ID_URL, TRANSACTIONS_URL } from '../shared/model/consta
   providedIn: 'root'
 })
 export class TransactionService {
-  private apiUrl = 'http://localhost:3000/transactions';
 
   constructor(private http: HttpClient) {}
 
-  // getTransactions(startDate: string, endDate: string): Observable<any> {
-  //   return this.http.get<any>(`${this.apiUrl}?startDate=${startDate}&endDate=${endDate}`);
-  // }
+  
   getTransactionAll(): Observable<Transaction[]> {
     return this.http.get<Transaction[]>(TRANSACTIONS_URL);
   }
  
   getTransactionById(transactionId:string):Observable<Transaction>{
     return this.http.get<Transaction>(TRANSACTIONS_BY_ID_URL + transactionId);
+  }
+
+  updateDataComment(transactionId: string, comment: string): Observable<any> {
+    return this.http.put<Transaction>(`${TRANSACTIONS_BY_ID_URL}${transactionId}`, comment);
   }
 }
