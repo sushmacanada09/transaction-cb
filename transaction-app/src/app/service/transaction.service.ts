@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Transaction } from '../shared/model/transaction';
 import { sample_transaction } from '../data';
-import { transition } from '@angular/animations';
+import { TRANSACTIONS_BY_ID_URL, TRANSACTIONS_URL } from '../shared/model/constants/urls';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +16,11 @@ export class TransactionService {
   // getTransactions(startDate: string, endDate: string): Observable<any> {
   //   return this.http.get<any>(`${this.apiUrl}?startDate=${startDate}&endDate=${endDate}`);
   // }
-  getTransactionAll():Transaction[]{
-    return sample_transaction;
+  getTransactionAll(): Observable<Transaction[]> {
+    return this.http.get<Transaction[]>(TRANSACTIONS_URL);
   }
-  getTransactionById(transactionId:string):Transaction{
-    return this.getTransactionAll().find(transaction=>transaction.id == transactionId)??new Transaction
-    ()
+ 
+  getTransactionById(transactionId:string):Observable<Transaction>{
+    return this.http.get<Transaction>(TRANSACTIONS_BY_ID_URL + transactionId);
   }
 }

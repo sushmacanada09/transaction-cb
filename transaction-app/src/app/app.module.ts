@@ -8,6 +8,7 @@ import { TransactionDetailComponent } from './component/transaction-details/tran
 import { ReactiveFormsModule } from '@angular/forms';
 import { TransactionService } from './service/transaction.service';
 import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,

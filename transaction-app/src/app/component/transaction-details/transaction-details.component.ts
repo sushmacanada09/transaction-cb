@@ -21,20 +21,15 @@ export class TransactionDetailComponent  implements OnInit{
   ) {}
 
   ngOnInit() {
-    //const id = this.route.snapshot.paramMap.get('id');
-    // this.transactionService.getTransactions('2020-01-01', '2020-12-31').subscribe(data => {
-    //   this.transaction = data.find((t: { id: string | null; }) => t.id === id);
-this.route.params.subscribe((params)=>{
-  if(params['id'])
-    {
-    this.transaction= this.transactionService.getTransactionById(params['id']);
-  }
-});
+    this.route.params.subscribe((params) => {
+      if(params['id'])
+      this.transactionService.getTransactionById(params['id']).subscribe(transaction => {
+        this.transaction = transaction;
+      });
+    })
 this.createForm();
 }
- 
-
-      
+  
 
   createForm() {
     this.transactionForm = this.fb.group({
